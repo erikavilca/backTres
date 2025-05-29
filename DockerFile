@@ -1,0 +1,20 @@
+#Elegimos la imagen base ligera por node.js.
+FROM node:alpine 
+
+#Establecemosel directorio de trabajo dentro del contenedor.
+WORKDIR /server
+
+#Copiamos el achivo package.json y package-lock.json 
+COPY package*.json ./
+
+#Instalamos la dependencias.
+RUN npm install      
+
+#Copiamos el resto de archivos del proyecto.
+COPY package*.json ./
+
+#exponemos el puerto 3000 para la aplicacion.
+EXPOSE 3000
+
+#Dedfinimos el comando que se ejutara al iniciar el contenedor.
+CMD ["npm" , "start"]

@@ -3,7 +3,7 @@ import { generateMockUsers } from "../dao/models/mockUserGenerator.js";
 import UserModel from "../dao/models/User.model.js";
 import PetModel from "../dao/models/Pet.model.js";
 import { faker } from "@faker-js/faker";
-import { createLogger } from "winston";
+// import { createLogger } from "winston";
 
 const router = Router();
 
