@@ -1,21 +1,11 @@
-import express from "express";
-import mocksRouter from "./router/mocks.router.js";
+import http from "http";
 import conf from "./configuracion/conf.js";
-import "./db.js";
-console.log(conf);
+import app from "./app.js";
 
 const port = conf.port;
-const app = express();
+const server = http.createServer(app);
 
-app.use(express.json());
-
-app.use("/api/mocks", mocksRouter);
-app.use("/", (req, res) => {
-  res.send(
-    "bienbnida, Este es un Backend para probar los mocks y fakers: /api/mocks/mockingusers   -----     /api/mocks/mockingpets      "
-  );
+server.listen(port, () => {
+  console.log(`Servidor escuchando en puerto ${port} con PID ${process.pid}`);
 });
 
-app.listen(port, () => {
-  console.log("Server on port", port);
-});

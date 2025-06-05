@@ -1,6 +1,6 @@
 import dotenv from "dotenv";
 
-const environment = "DEVELOPMENT";
+const environment = "PRODUCTION";
 dotenv.config({
   path:
     environment === "DEVELOPMENT" ? "./.env.DEVELOPMENT" : "./.env.PRODUCTION",

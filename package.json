@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "main": "server.js",
   "scripts": {
-
-    "dev": "node --watch src/server.js"
+    "dev": "node src/server.js",
+      "start": "pm2 start src/server.js -i max -f"
   },
   "type": "module",
   "keywords": [],
