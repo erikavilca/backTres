@@ -1,17 +1,18 @@
+# Imagen base
 FROM node:22.11.0
 
+# Directorio de trabajo dentro del contened
 WORKDIR /app
 
+# Copiamos dependencias e instalamos
 COPY package*.json ./
-
 RUN npm install
 
-# Instalamos pm2 de forma global para correr en clúster
-RUN npm install pm2 -g
-
+# Copiamos el resto de la app
 COPY . .
 
+# Puerto que expone tu servidor (el de Express)
 EXPOSE 3000
 
-# Usamos pm2-runtime que se queda en foreground (buenas prácticas Docker)
-CMD ["pm2-runtime", "src/server.js", "-i", "max"]
+# Ejecutamos directamente con Node (sin PM2)
+CMD ["node", "src/server.js"]

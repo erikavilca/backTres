@@ -28,9 +28,10 @@ const userSchema = new Schema({
     enum: ["user", "admin"],
     default: "user",
   },
-  pets: []
+  pets: [],
 });
 //npmbre y userriologie
-export const userModel = model("users", userSchema);
 
+const userModel = model("usersModel", userSchema);
 
+export default userModel;

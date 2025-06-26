@@ -1,0 +1,124 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "API de usuario",
+    "version": "1.0.0",
+    "description": "API para gestionar usuarios"
+  },
+  "paths": {
+    "/api/sessions": {
+      "get": {
+        "summary": "Obtener todos los usuarios",
+        "responses": {
+          "200": {
+            "description": "Listado de usuarios"
+          }
+        }
+      },
+      "post": {
+        "summary": "Crear un nuevo usuario",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Usuario creado correctamente",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "first_name": { "type": "string" },
+                "last_name": { "type": "string" },
+                "email": { "type": "string" },
+                "age": { "type": "number" },
+                "password": { "type": "string" },
+                "role": {
+                  "type": "string",
+                  "enum": ["user", "admin"],
+                  "default": "user"
+                },
+                "pets": {
+                  "type": "array"
+                }
+              },
+              "required": ["first_name", "email"]
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "El usuario fue creado correctamente"
+          },
+          "500": {
+            "description": "Error"
+          }
+        }
+      }
+    },
+    "/api/sessions/{uid}": {
+      "put": {
+        "summary": "Actualiza al usuario a través de su ID",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "uid",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Actualizar usuario",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "first_name": { "type": "string" },
+                "last_name": { "type": "string" },
+                "email": { "type": "string" },
+                "age": { "type": "number" },
+                "password": { "type": "string" },
+                "role": {
+                  "type": "string",
+                  "enum": ["user", "admin"],
+                  "default": "user"
+                },
+                "pets": {
+                  "type": "array"
+                }
+              },
+              "required": ["first_name", "email"]
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Usuario actualizado"
+          },
+          "404": {
+            "description": "Usuario no encontrado"
+          },
+          "500": {
+            "description": "Error del servidor"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Eliminar el usuario por ID",
+        "parameters": [
+          {
+            "name": "uid",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Usuario eliminado"
+          },
+          "404": {
+            "description": "No existe el usuario que se quiere eliminar"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,4 +1,4 @@
-import bcrypt from 'bcrypt';
+import bcrypt from "bcryptjs";
 import { fakerES as faker } from '@faker-js/faker';
 
 export async function generateMockUsers(count) {
